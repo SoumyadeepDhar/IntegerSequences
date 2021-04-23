@@ -1,2 +1,2 @@
-# IntegerSequences
-Integer Sequences to calculate large entries. (OEIS)
+## IntegerSequences
+To calculate large entries of Integer Sequences. (OEIS)
