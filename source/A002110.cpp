@@ -53,7 +53,10 @@ int main()
   LargeIntegerSequence seqA002110("../data/oeis/a000040.txt", "../data/oeis/a002110.txt", "../data/b002110.txt");
 
   // Create sequence with elements having maximum 1000 digits
-  while(seqA002110.generate() <= 1000);
+  // while(seqA002110.generate() <= 1000);
+
+  // Create 350 elements
+  for (auto index = 0; index < 350 && seqA002110.generate(); index++);
 
   return 0;
 }
