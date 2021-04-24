@@ -29,11 +29,14 @@ foreach(seq ${SEQUENCES})
     # Make ctest target 
     add_executable(${seq} ${SOURCES})
 
+    # Create sequence number based class
+    target_compile_definitions(${seq} PRIVATE "-DSEQUENCE=${seq}")
+
     # Links the executable to the LargeInt C++ library.
     target_link_libraries (${seq} PRIVATE ${LARGEINT}) 
 
     # Add CTest to CI
     add_test(CTest${seq} ${seq})
 
-endforeach(seq)
+endforeach()
 

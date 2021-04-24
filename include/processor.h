@@ -116,6 +116,9 @@ protected:
   Writer _oWriter;
 };
 
+// Explisit instanciation for all sequences
+template class IntegerSequenceProcessor<SEQUENCE>;
+
 } // namespace is
 } // namespace dn
 } // namespace ns

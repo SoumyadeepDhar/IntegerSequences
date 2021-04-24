@@ -5,6 +5,7 @@
  *  Author: soumyadeep dhar
  */
 
+#include <stdlib.h>
 #include "processor.h"
 
 // Number system
@@ -58,15 +59,19 @@ void IntegerSequenceProcessor<S>::evaluate(std::pair<unsigned int, std::string> 
   {
     if (_element.second == _result.second)
     {
-      std::cout << "[    OK    ] ... " << _element.first << std::endl;
+      std::cout << "\033[32m"
+                << "[    OK    ]";
+      std::cout << "\033[00m"
+                << " ... " << _element.first << std::endl;
     }
     else
     {
-      std::cout << "[  FAILED  ] ... " << _element.first << ": " << std::endl;
-      std::cout << "[  FAILED  ] ... "
-                << "GT: " << _element.second << std::endl;
-      std::cout << "[  FAILED  ] ... "
-                << "RE: " << _result.second << std::endl;
+      std::cout << "\033[31m"
+                << "[  FAILED  ]";
+      std::cout << "\033[00m"
+                << " ... " << _element.first << ": " << std::endl;
+      std::cout << "GT: " << _element.second << std::endl;
+      std::cout << "RE: " << _result.second << std::endl;
     }
   }
   else
@@ -77,15 +82,10 @@ void IntegerSequenceProcessor<S>::evaluate(std::pair<unsigned int, std::string> 
 
 // Evalution of output based on given ground truth
 template <OEIS S>
-unsigned int  IntegerSequenceProcessor<S>::generate()
+unsigned int IntegerSequenceProcessor<S>::generate()
 {
   return 0U;
 }
-
-// Explisit instanciation for all sequences
-template class IntegerSequenceProcessor<A002110>;
-template class IntegerSequenceProcessor<A143293>;
-template class IntegerSequenceProcessor<A067175>;
 
 } // namespace is
 } // namespace dn
