@@ -83,10 +83,10 @@ public:
   ~IntegerSequenceProcessor();
 
   // Evalution of output based on given ground truth
-  virtual void evaluate(std::pair<unsigned int, std::string> &_result) = 0;
+  virtual void evaluate(std::pair<unsigned int, std::string> &_result);
 
   // Process input data to generate next elements of the sequence
-  virtual void generate() = 0;
+  virtual unsigned int generate() = 0;
 
 protected:
   // Input file stream

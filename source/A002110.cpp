@@ -21,19 +21,39 @@
 
 #include "A002110.h"
 
+// Sequence
 using LargeIntegerSequence = ns::dn::is::a002110::A002110;
+
+// Process input data to generate next elements of the sequence
+unsigned int LargeIntegerSequence::generate()
+{
+  static LargeInteger _value(1U);
+  std::pair<unsigned int, std::string> _element;
+
+  // Read input data
+  _iReader >> _element;
+
+  // Update result
+  _value *= _element.second;
+  _element.second = _value.getValue();
+
+  // Evaluate result
+  evaluate(_element);
+
+  // Write output data
+  _oWriter << _element;
+
+  // Return number of digits in the element
+  return _value.digits(); 
+}
 
 int main()
 {
   // Initialize sequence
-  LargeIntegerSequence seqA002110("../data/oeis/a000040.txt", "../data/oeis/a002110.txt", "../data/a002110.txt");
+  LargeIntegerSequence seqA002110("../data/oeis/a000040.txt", "../data/oeis/a002110.txt", "../data/b002110.txt");
 
-  // Createsequence upto 5000 elements
-  for (int x = 0; x < 5000; x++)
-  {
-    // Generate next element
-    seqA002110.generate();
-  }
+  // Create sequence with elements having maximum 1000 digits
+  while(seqA002110.generate() <= 1000);
 
   return 0;
 }

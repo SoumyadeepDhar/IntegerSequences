@@ -37,6 +37,41 @@ IntegerSequenceProcessor::~IntegerSequenceProcessor()
   _oDataStream.close();
 }
 
+// Evalution of output based on given ground truth
+void IntegerSequenceProcessor::evaluate(std::pair<unsigned int, std::string> &_result)
+{
+  std::pair<unsigned int, std::string> _element;
+
+  // Read ground truth data
+  do
+  { // Store in _element
+    _gtReader >> _element;
+
+    // Untill filedescribter is valid and matching elemnt not found
+  } while (_gtDataStream.good() && _element.first < _result.first);
+
+  // Check index postion for both data
+  if (_element.first == _result.first)
+  {
+    if (_element.second == _result.second)
+    {
+      std::cout << "[    OK    ] ... " << _element.first << std::endl;
+    }
+    else
+    {
+      std::cout << "[  FAILED  ] ... " << _element.first << ": " << std::endl;
+      std::cout << "[  FAILED  ] ... "
+                << "GT: " << _element.second << std::endl;
+      std::cout << "[  FAILED  ] ... "
+                << "RE: " << _result.second << std::endl;
+    }
+  }
+  else
+  {
+    std::cout << "[   NO GT  ] ... " << _result.first << std::endl;
+  }
+}
+
 } // namespace is
 } // namespace dn
 } // namespace ns
