@@ -13,7 +13,9 @@ include_directories(include)
 find_library(LARGEINT NAMES largeint HINTS "${CMAKE_SOURCE_DIR}/library/")
 
 # Add source files
-set(SOURCES source/A002110.cpp)
+set(SOURCES 
+    source/processor.cpp
+    source/A002110.cpp)
 
 # Make ctest target
 add_executable(A002110 ${SOURCES})
