@@ -16,12 +16,14 @@
  * 
  */
 
-#include "A143293.h"
+#include "largeint.h"
+#include "processor.h"
 
-// Sequence
-using LargeIntegerSequence = ns::dn::is::a143293::A143293;
+using LargeInteger = ns::dn::li::LargeInt;
+using LargeIntegerSequence = ns::dn::is::IntegerSequenceProcessor<ns::dn::is::A143293>;
 
 // Process input data to generate next elements of the sequence
+template <>
 unsigned int LargeIntegerSequence::generate()
 {
   static LargeInteger _value(0U);

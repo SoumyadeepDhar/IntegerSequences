@@ -17,7 +17,8 @@ namespace dn
 namespace is
 {
 
-IntegerSequenceProcessor::IntegerSequenceProcessor
+template <OEIS S>
+IntegerSequenceProcessor<S>::IntegerSequenceProcessor
   ( std::string _ipath
   , std::string _gtpath
   , std::string _opath)
@@ -30,7 +31,8 @@ IntegerSequenceProcessor::IntegerSequenceProcessor
 {
 }
 
-IntegerSequenceProcessor::~IntegerSequenceProcessor()
+template <OEIS S>
+IntegerSequenceProcessor<S>::~IntegerSequenceProcessor()
 {
   _iDataStream.close();
   _gtDataStream.close();
@@ -38,7 +40,8 @@ IntegerSequenceProcessor::~IntegerSequenceProcessor()
 }
 
 // Evalution of output based on given ground truth
-void IntegerSequenceProcessor::evaluate(std::pair<unsigned int, std::string> &_result)
+template <OEIS S>
+void IntegerSequenceProcessor<S>::evaluate(std::pair<unsigned int, std::string> &_result)
 {
   std::pair<unsigned int, std::string> _element;
 
@@ -71,6 +74,18 @@ void IntegerSequenceProcessor::evaluate(std::pair<unsigned int, std::string> &_r
     std::cout << "[   NO GT  ] ... " << _result.first << std::endl;
   }
 }
+
+// Evalution of output based on given ground truth
+template <OEIS S>
+unsigned int  IntegerSequenceProcessor<S>::generate()
+{
+  return 0U;
+}
+
+// Explisit instanciation for all sequences
+template class IntegerSequenceProcessor<A002110>;
+template class IntegerSequenceProcessor<A143293>;
+template class IntegerSequenceProcessor<A067175>;
 
 } // namespace is
 } // namespace dn

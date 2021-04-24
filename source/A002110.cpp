@@ -19,12 +19,14 @@
  * 
  */
 
-#include "A002110.h"
+#include "largeint.h"
+#include "processor.h"
 
-// Sequence
-using LargeIntegerSequence = ns::dn::is::a002110::A002110;
+using LargeInteger = ns::dn::li::LargeInt;
+using LargeIntegerSequence = ns::dn::is::IntegerSequenceProcessor<ns::dn::is::A002110>;
 
 // Process input data to generate next elements of the sequence
+template <>
 unsigned int LargeIntegerSequence::generate()
 {
   static LargeInteger _value(1U);

@@ -23,6 +23,14 @@ namespace dn
 namespace is
 {
 
+// The On-Line Encyclopedia of Integer Sequences
+enum  OEIS 
+{
+  A002110 = 2110,
+  A067175 = 67175,
+  A143293 = 143293
+};
+template <OEIS S>
 class IntegerSequenceProcessor
 {
 public:
@@ -86,7 +94,7 @@ public:
   virtual void evaluate(std::pair<unsigned int, std::string> &_result);
 
   // Process input data to generate next elements of the sequence
-  virtual unsigned int generate() = 0;
+  virtual unsigned int generate();
 
 protected:
   // Input file stream

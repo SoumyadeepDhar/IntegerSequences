@@ -23,8 +23,8 @@ foreach(seq ${SEQUENCES})
 
     # Add source files
     set(SOURCES 
-        source/processor.cpp
-        source/${seq}.cpp)
+        source/${seq}.cpp
+        source/processor.cpp)
 
     # Make ctest target 
     add_executable(${seq} ${SOURCES})
