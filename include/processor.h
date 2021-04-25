@@ -27,8 +27,10 @@ namespace is
 enum  OEIS 
 {
   A002110 = 2110,
+  A060797 = 60797,
   A067175 = 67175,
   A143293 = 143293
+  
 };
 template <OEIS S>
 class IntegerSequenceProcessor
