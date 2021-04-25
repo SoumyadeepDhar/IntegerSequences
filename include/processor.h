@@ -37,13 +37,20 @@ class IntegerSequenceProcessor
 {
 public:
   // Internal reader structure
-  typedef struct _reader_
+  class Reader
   {
+  private:
     // Input file stream
     std::ifstream &_ids;
 
+  public:
     // Initialize reader
-    _reader_(std::ifstream &ids) : _ids(ids)
+    Reader(std::ifstream &ids) : _ids(ids)
+    {
+    }
+
+    // Destructor Reader
+    ~Reader()
     {
     }
 
@@ -58,16 +65,23 @@ public:
       }
       return _ids;
     }
-  } Reader;
+  };
 
   // Internal writer structure
-  typedef struct _writer_
+  class Writer
   {
+  private:
     // Output file stream
     std::ofstream &_ods;
 
+  public:
     // Initialize reader
-    _writer_(std::ofstream &ods) : _ods(ods)
+    Writer(std::ofstream &ods) : _ods(ods)
+    {
+    }
+
+    // Destrctor Writer
+    ~Writer()
     {
     }
 
@@ -84,7 +98,7 @@ public:
       }
       return _ods;
     }
-  } Writer;
+  };
 
   // Constructor with parameter
   IntegerSequenceProcessor(std::string _ipath, std::string _gtpath, std::string _opath);
@@ -100,22 +114,22 @@ public:
 
 protected:
   // Input file stream
-  std::ifstream _iDataStream; //("test.txt", std::ifstream::in);
+  std::ifstream _inDataStream; //("test.txt", std::ifstream::in);
 
   // Ground truth file stream
   std::ifstream _gtDataStream;
 
   // Output file stream
-  std::ofstream _oDataStream;
+  std::ofstream _ouDataStream;
 
   // Input data reader
-  Reader _iReader;
+  Reader _inReader;
 
   // Ground truth data reader
   Reader _gtReader;
 
   // Output data writer
-  Writer _oWriter;
+  Writer _ouWriter;
 };
 
 // Explisit instanciation for all sequences

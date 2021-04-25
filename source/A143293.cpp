@@ -30,7 +30,7 @@ unsigned int LargeIntegerSequence::generate()
   std::pair<unsigned int, std::string> _element;
 
   // Read input data
-  _iReader >> _element;
+  _inReader >> _element;
 
   // Update result
   _value += _element.second;
@@ -40,7 +40,7 @@ unsigned int LargeIntegerSequence::generate()
   evaluate(_element);
 
   // Write output data
-  _oWriter << _element;
+  _ouWriter << _element;
 
   // Return number of digits in the element
   return _value.digits(); 

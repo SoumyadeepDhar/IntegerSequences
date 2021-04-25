@@ -20,24 +20,24 @@ namespace is
 
 template <OEIS S>
 IntegerSequenceProcessor<S>::IntegerSequenceProcessor
-  ( std::string _ipath
+  ( std::string _inpath
   , std::string _gtpath
-  , std::string _opath)
-    : _iDataStream(_ipath.c_str(), std::ifstream::in)
-    , _iReader(_iDataStream)
+  , std::string _oupath)
+    : _inDataStream(_inpath.c_str(), std::ifstream::in)
+    , _inReader(_inDataStream)
     , _gtDataStream(_gtpath.c_str(), std::ifstream::in)
     , _gtReader(_gtDataStream)
-    , _oDataStream(_opath.c_str(), std::ifstream::out | std::ifstream::trunc)
-    , _oWriter(_oDataStream)
+    , _ouDataStream(_oupath.c_str(), std::ifstream::out | std::ifstream::trunc)
+    , _ouWriter(_ouDataStream)
 {
 }
 
 template <OEIS S>
 IntegerSequenceProcessor<S>::~IntegerSequenceProcessor()
 {
-  _iDataStream.close();
+  _inDataStream.close();
   _gtDataStream.close();
-  _oDataStream.close();
+  _ouDataStream.close();
 }
 
 // Evalution of output based on given ground truth
