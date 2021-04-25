@@ -71,18 +71,16 @@ template <>
 unsigned int LargeIntegerSequence::generate()
 {
   static LargeInteger _value(0U);
-  static long double _primorial = 1.0;
-
   std::pair<unsigned int, std::string> _element;
 
   // Read input data
   _iReader >> _element;
 
-  // Compute sqrt with highest floating point precision
-  _primorial *= std::stold(_element.second.c_str());
+  // Get input n
+  _value = _element.second;
 
-  // Update result
-  _value = sqrt(_primorial);
+  // Calculate sqrt result a(n)
+  _value = _value.sqrt();
 
   // Store result
   _element.second = _value.getValue();
@@ -100,13 +98,13 @@ unsigned int LargeIntegerSequence::generate()
 int main()
 {
   // Initialize sequence
-  LargeIntegerSequence seqA060797("../data/oeis/a000040.txt", "../data/oeis/a002110.txt", "../data/b060797.txt");
+  LargeIntegerSequence seqA060797("../data/oeis/a002110.txt", "../data/oeis/a002110.txt", "../data/b060797.txt");
 
   // Create sequence with elements having maximum 1000 digits
   // while(seqA060797.generate() <= 1000);
 
-  // Create 100 elements
-  for (auto index = 0; index < 50 && seqA060797.generate(); index++)
+  // Create 1000 elements or max 1000 digit element
+  for (auto index = 0; index < 1000 && seqA060797.generate() < 1000; index++)
     ;
 
   return 0;
