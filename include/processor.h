@@ -29,9 +29,10 @@ enum  OEIS
   A002110 = 2110,
   A060797 = 60797,
   A067175 = 67175,
+  A127601 = 127601,
   A143293 = 143293
-  
 };
+
 template <OEIS S>
 class IntegerSequenceProcessor
 {

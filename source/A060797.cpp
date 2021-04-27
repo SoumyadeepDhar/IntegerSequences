@@ -11,7 +11,7 @@
  *           2724103, 17442771, 114379899, 784149081, 5708691485, 
  *           43849291330, 342473913399,  
  * 
- *  A000040: https://oeis.org/A000040/a000040.txt
+ *  A002110: https://oeis.org/A002110/a002110.txt
  *  A060797: https://oeis.org/A060797/b060797.txt
  * 
  */
@@ -43,7 +43,9 @@ void LargeIntegerSequence::evaluate(std::pair<unsigned int, std::string> &_resul
   {
     LargeInteger _t1(_result.second);
     LargeInteger _t2(_t1 + 1);
-    if (((_t1 * _t1) < _element.second) && ((_t2 * _t2) > _element.second))
+    _t1 = _t1.pow(2);
+    _t2 = _t2.pow(2);
+    if ((_t1 < _element.second) && (_t2 > _element.second))
     {
       std::cout << "\033[32m"
                 << "[    OK    ]";

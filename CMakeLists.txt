@@ -20,6 +20,7 @@ set(SEQUENCES
     A002110
     A060797 
     A067175
+    A127601
     A143293)
 
 # Create target for each sequence
