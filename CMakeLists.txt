@@ -18,10 +18,12 @@ enable_testing()
 # List of sequences
 set(SEQUENCES 
     A002110
+    A057369
     A060797 
     A067175
     A127601
-    A143293)
+    A143293
+    A343860)
 
 # Create target for each sequence
 foreach(seq ${SEQUENCES})
@@ -36,6 +38,9 @@ foreach(seq ${SEQUENCES})
 
     # Create sequence number based class
     target_compile_definitions(${seq} PRIVATE "-DSEQUENCE=${seq}")
+
+    # Set build options
+    target_compile_options(${seq} PRIVATE -O3 -Wall -Wextra)
 
     # Links the executable to the LargeInt C++ library.
     target_link_libraries (${seq} PRIVATE ${LARGEINT}) 

@@ -24,13 +24,15 @@ namespace is
 {
 
 // The On-Line Encyclopedia of Integer Sequences
-enum  OEIS 
+enum OEIS
 {
   A002110 = 2110,
+  A057369 = 57369,
   A060797 = 60797,
   A067175 = 67175,
   A127601 = 127601,
-  A143293 = 143293
+  A143293 = 143293,
+  A343860 = 343860
 };
 
 template <OEIS S>
@@ -115,19 +117,19 @@ public:
 
 protected:
   // Input file stream
-  std::ifstream _inDataStream; //("test.txt", std::ifstream::in);
-
-  // Ground truth file stream
-  std::ifstream _gtDataStream;
-
-  // Output file stream
-  std::ofstream _ouDataStream;
+  std::ifstream _inDataStream;
 
   // Input data reader
   Reader _inReader;
 
+  // Ground truth file stream
+  std::ifstream _gtDataStream;
+
   // Ground truth data reader
   Reader _gtReader;
+
+  // Output file stream
+  std::ofstream _ouDataStream;
 
   // Output data writer
   Writer _ouWriter;
