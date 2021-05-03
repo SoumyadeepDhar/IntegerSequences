@@ -42,14 +42,14 @@ unsigned int LargeIntegerSequence::generate()
     // For all possible roots of the equation
     // x^2 - kx + n (where x + y = k & xy = n)
     long long int _st = 1;
-    long long int _en = (k >> 1) + 1;
+    long long int _en = k >> 1;
 
     // Find possible (a, b) as root ofthe equaton
     // x^2 -nx + k^2 (where a + b = n and a * b = k^2)
     long long int kk = (k * k);
 
     // For all possible solutions
-    for (long long int p = _st; p < _en; p++)
+    for (long long int p = _st; p <= _en; p++)
     {
       // Possible roots (x, y) such that 'x + y = k'
       long long int x = p;
@@ -58,10 +58,12 @@ unsigned int LargeIntegerSequence::generate()
       // Find 'x * y' as expected 'n'
       long long int n = (x * y);
 
-      // Find discriminant to check solution
-      long long int d = (n * n) - (4 * kk);
-      if (d >= 0)
+      // Ignore negetive  discriminant
+      if (n >= (k << 1))
       {
+        // Find discriminant to check solution
+        long long int d = (n * n) - (4 * kk);
+
         // Get possible roots
         long long int a = (n + (powl(d, 0.5) + 0.5)) / 2;
         long long int b = n - a;
