@@ -3,9 +3,10 @@
  *
  *  Created on:  01-May-2021
  *  Modified on: 01-May-2021
- *  Author:      Soumyadeep Dhar
  * 
- *  A060797: Numbers k such that the two equations t^2-k*t+m = 0 and 
+ *  Author:  Soumyadeep Dhar
+ * 
+ *  A343860: Numbers k such that the two equations t^2-k*t+m = 0 and 
  *           t^2-m*t+k^2 = 0 have positive integer roots. m is the constant
  *           and k is the coefficient of t in first equation, which has roots p
  *           and q (i.e., {k, m, p, q} ∈ ℤ+, k=p+q and m=p*q). Also k^2 is the 
@@ -18,7 +19,7 @@
  * 
  *  A343860: https://oeis.org/A343860/b343860.txt
  * 
- *  Author:  Soumyadeep Dhar, May 01 2021
+ *  Sequence Author:  Soumyadeep Dhar, May 01 2021
  * 
  */
 

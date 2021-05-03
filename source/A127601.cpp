@@ -3,17 +3,20 @@
  *
  *  Created on:  26-Apr-2021
  *  Modified on: 26-Apr-2021
- *  Author:      Soumyadeep Dhar
  * 
- *  A060797: Integer part of 4th root of product of first n primes 
+ *  Author:  Soumyadeep Dhar
+ * 
+ *  A127601: Integer part of 4th root of product of first n primes 
  *           (n-th primorial) A002110(n).
  *
  *  Example: 1, 1, 2, 3, 6, 13, 26, 55, 122, 283, 669, 1650, 4176, 
  *           10694, 28002, 75555, 209402, 585212, 1674296, 4860120, 
- *           14206194, 42353033, 127836257  
+ *           14206194, 42353033, 127836257,  
  * 
  *  A002110: https://oeis.org/A002110/a002110.txt
  *  A127601: https://oeis.org/A127601/b127601.txt
+ * 
+ *  Sequence Author: N. J. A. Sloane and J. H. Conway
  * 
  */
 

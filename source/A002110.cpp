@@ -3,7 +3,8 @@
  *
  *  Created on:  23-Apr-2021
  *  Modified on: 23-Apr-2021
- *  Author:      Soumyadeep Dhar
+ * 
+ *  Author:  Soumyadeep Dhar
  * 
  *  A002110: Primorial numbers (first definition): product of first n primes. 
  *           Sometimes written prime(n)#.
@@ -12,10 +13,12 @@
  *           6469693230, 200560490130, 7420738134810, 304250263527210, 
  *           13082761331670030, 614889782588491410, 32589158477190044730, 
  *           1922760350154212639070, 117288381359406970983270, 
- *           7858321551080267055879090  
+ *           7858321551080267055879090,  
  * 
- *  Prime:     https://oeis.org/A000040/a000040.txt
- *  prime(n)#: https://oeis.org/A002110/a002110.txt
+ *  A000040: https://oeis.org/A000040/a000040.txt
+ *  A002110: https://oeis.org/A002110/a002110.txt
+ * 
+ *  Sequence Author: N. J. A. Sloane and J. H. Conway
  * 
  */
 

@@ -3,16 +3,19 @@
  *
  *  Created on:  24-Apr-2021
  *  Modified on: 24-Apr-2021
- *  Author:      Soumyadeep Dhar
  * 
- *  A002110: Partial sums of A002110, the primorial numbers.
+ *  Author:  Soumyadeep Dhar
+ * 
+ *  A143293: Partial sums of A002110, the primorial numbers.
  *
  *  Example: 1, 3, 9, 39, 249, 2559, 32589, 543099, 10242789, 
  *           233335659, 6703028889, 207263519019, 7628001653829, 
- *           311878265181039, 13394639596851069, 628284422185342479  
+ *           311878265181039, 13394639596851069, 628284422185342479,  
  * 
- *  prime(n)#:      https://oeis.org/A002110/b002110.txt
- *  sum(prime(n)#): https://oeis.org/A143293/b143293.txt
+ *  A002110: https://oeis.org/A002110/b002110.txt
+ *  A143293: https://oeis.org/A143293/b143293.txt
+ * 
+ *  Sequence Author: Gary W. Adamson, Aug 05 2008
  * 
  */
 

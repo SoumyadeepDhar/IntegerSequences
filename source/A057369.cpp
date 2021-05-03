@@ -3,7 +3,8 @@
  *
  *  Created on:  01-May-2021
  *  Modified on: 26-May-2021
- *  Author:      Soumyadeep Dhar
+ * 
+ *  Author:  Soumyadeep Dhar
  * 
  *  A057369: numbers m such that the two equations t^2-k*t+m = 0 and
  *           t^2-m*t+k^2 = 0 have positive integer roots. m is the 
@@ -14,11 +15,11 @@
  *           {k, m, u, v} ∈ ℤ+, m=u+v and k^2=u*v).
  *
  *  Example: 16, 18, 25, 45, 50, 80, 234, 250, 261, 425, 1025, 1040, 1530, 
- *           1625, 1746, 2320, 4250, 7605, 7794, 9650  
+ *           1625, 1746, 2320, 4250, 7605, 7794, 9650,  
  * 
  *  A057369: https://oeis.org/A057369/b057369.txt
  * 
- *  Author:  Naohiro Nomoto, Sep 23 2000
+ *  Sequence Author:  Naohiro Nomoto, Sep 23 2000
  * 
  */
 
