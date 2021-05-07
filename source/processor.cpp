@@ -6,6 +6,7 @@
  */
 
 #include <stdlib.h>
+#include "largeint.h"
 #include "processor.h"
 
 // Number system
@@ -30,6 +31,10 @@ IntegerSequenceProcessor<S>::IntegerSequenceProcessor
     , _ouDataStream(_oupath.c_str(), std::ifstream::out | std::ifstream::trunc)
     , _ouWriter(_ouDataStream)
 {
+#ifdef PARI
+  // Initialize pari support
+  ns::dn::li::LargeInt::InitializePARI();
+#endif
 }
 
 template <OEIS S>

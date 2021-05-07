@@ -10,7 +10,6 @@
 
 #include <string>
 #include <vector>
-#include <math.h>
 
 // Number system
 namespace ns
@@ -24,21 +23,7 @@ namespace li
 // Class LargeInt
 class LargeInt
 {
-// Declaration of private member and methods  
-private:
-  /// Sign info for the number
-  bool positive;
-
-  /// Split up data in nodes of N_LIMIT_mDIGIT
-  std ::vector<long long unsigned int> _nList;
-
-  /// Add unsigned value to specific positional node
-  void add(const long long unsigned int _x, const unsigned int _iPosition = 0);
-
-  /// Subtract unsigned value to specific positional node
-  void sub(const long long unsigned int _x, const unsigned int _iPosition = 0);
-
-// Declaration of public member and methods  
+// Declaration of public member and methods
 public:
   /// Constructor default
   LargeInt();
@@ -53,7 +38,7 @@ public:
   /// Destructor default
   virtual ~LargeInt();
 
-  /// Get sign of the large integer as symbol (-) if negetive
+  /// Get sign of the large integer as symbol (-) if negative
   std::string getSign() const;
 
   /// Get large integer as string with all the nodes information
@@ -216,6 +201,39 @@ public:
 
   /// This is the operator overloading function for assignment operator(--) postfix.
   LargeInt operator--(int);
+
+#ifdef PARI
+  //Initialize PARI library
+  static void InitializePARI();
+#endif
+
+// Declaration of private member and methods
+private:
+  /// Sign info for the number
+  bool positive;
+
+  /// Split up data in nodes of N_LIMIT_mDIGIT
+  std ::vector<long long unsigned int> _nList;
+
+  /// Add unsigned value to specific positional node
+  void add(const long long unsigned int _x, const unsigned int _iPosition = 0);
+
+  /// Subtract unsigned value to specific positional node
+  void sub(const long long unsigned int _x, const unsigned int _iPosition = 0);
+
+  /// Assign filtered string value
+  void assignment(const std::string &_x);
+
+// If pari support is defind
+#ifdef PARI
+
+  // Marker to Identify pari is already initialized
+  static bool _pariInitialized;
+
+  /// Convert  GEN(long *) value to Large int
+  void convert(long *_g, LargeInt &_x);
+
+#endif
 };
 
 } // namespace li

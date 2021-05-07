@@ -37,7 +37,7 @@ foreach(seq ${SEQUENCES})
     add_executable(${seq} ${SOURCES})
 
     # Create sequence number based class
-    target_compile_definitions(${seq} PRIVATE "-DSEQUENCE=${seq}")
+    target_compile_definitions(${seq} PRIVATE "-DSEQUENCE=${seq}" "-DPARI")
 
     # Set build options
     target_compile_options(${seq} PRIVATE -O3 -Wall -Wextra)

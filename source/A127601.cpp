@@ -86,8 +86,7 @@ unsigned int LargeIntegerSequence::generate()
   _value = _element.second;
 
   // Calculate 4th root of nth primorial as result a(n)
-  _value = _value.sqrt();
-  _value = _value.sqrt();
+  _value = _value.root(4);
 
   // Store result
   _element.second = _value.getValue();
