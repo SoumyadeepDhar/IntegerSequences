@@ -37,61 +37,69 @@ unsigned int LargeIntegerSequence::generate()
   std::pair<unsigned int, std::string> _element;
 
   // Check all numbers upto 100000
-  for (long long int k = 1; k < 100000; k++)
+  for (long long int k = 8; k <= 1000000; k++)
   {
-    // For all possible roots of the equation
-    // x^2 - kx + n (where x + y = k & xy = n)
-    long long int _st = 1;
-    long long int _en = k >> 1;
+    // std::cout << "k: " << k <<  std::endl;
+    long long int xMax = k / 2;
 
-    // Find possible (a, b) as root ofthe equaton
-    // x^2 -nx + k^2 (where a + b = n and a * b = k^2)
+    // For all possible roots of the equation
+    // x^2 - kx + m (where x + y = k & xy = m)
+
+    // Find possible (a, b) as root of the equation
+    // x^2 -mx + k^2 (where a + b = m and a * b = k^2)
     long long int kk = (k * k);
 
     // For all possible solutions
-    for (long long int p = _st; p <= _en; p++)
+    long long int x = ceil((k - sqrt(kk - 8 * k)) / (double) 2);
+    long long int y = (k - x);
+
+    // Find 'x * y' as initial expected 'n'
+    long long int m = (x * y);
+
+    do
     {
-      // Possible roots (x, y) such that 'x + y = k'
-      long long int x = p;
-      long long int y = k - p;
+      long long int s = sqrt((m * m) - (4 * kk));
 
-      // Find 'x * y' as expected 'n'
-      long long int n = (x * y);
+      // Get possible roots
+      long long int a = (m + s) / 2;
+      long long int b = m - a;
+      // std::cout << "k: " << k << " kk: " << kk << " (a*b): " << (a * b) << " a: " << a << " b: " << b << " s: " << s << " m: " << m << " x: " << x << " y: " << y << std::endl;
 
-      // Ignore negetive  discriminant
-      if (n >= (k << 1))
+      // If valid roots found
+      if ((a * b) == kk)
       {
-        // Find discriminant to check solution
-        long long int d = (n * n) - (4 * kk);
+        // Store result
+        _element.first = _count;
+        _element.second = std::to_string(k);
 
-        // Get possible roots
-        long long int a = (n + (powl(d, 0.5) + 0.5)) / 2;
-        long long int b = n - a;
+        // Write output data
+        _ouWriter << _element;
 
-        // If valid roots found
-        if ((a * b) == kk)
-        {
-          // Store result
-          _element.first = _count;
-          _element.second = std::to_string(k);
+        //Update element count
+        _count++;
+        std::cout << "[ " << k << " ]: "
+                  << m
+                  << " (" << a
+                  << ", " << b
+                  << ", " << x
+                  << ", " << y << ") " << std::endl;
 
-          // Write output data
-          _ouWriter << _element;
-
-          //Update element count
-          _count++;
-          std::cout << "[ " << k << " ]: "
-                    << n
-                    << " (" << a
-                    << ", " << b
-                    << ", " << x
-                    << ", " << y << ") " << std::endl;
-
-          // Keep only unique values
-          break;
-        }
+        // Keep only unique values
+        break;
       }
-    }
+      else
+      {
+        // Adjust x to advance quickly
+        a = kk / (b - 1);
+        m = a + (b - 1);
+        s = m / y;
+
+        // Update values
+        x = std::max(x + 1, s);
+        y = k - x;
+        m = x * y;
+      }
+    } while (x <= xMax);
   }
 
   return 0;
