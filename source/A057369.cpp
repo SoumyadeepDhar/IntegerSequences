@@ -34,67 +34,70 @@ using LargeIntegerSequence = ns::dn::is::IntegerSequenceProcessor<ns::dn::is::A0
 template <>
 unsigned int LargeIntegerSequence::generate()
 {
-  long long int _count = 1;
+  int _count = 1;
   std::pair<unsigned int, std::string> _element;
 
-  // keep square vaues
+  // keep square values
   std::set<long long int> _results;
-  std::vector<long long int> _squares;
-  for (int a = 0; a < 100000; a++)
-  {
-    _squares.push_back(a * a);
-  }
 
   // Check all numbers upto 100000
-  for (long long int a = 1; a < 100000; a++)
+  for (long long int k = 8; k <= 5000000; k++)
   {
-    // Valid last found square root
-    long long int k = a;
+    // std::cout << "k: " << k <<  std::endl;
+    // For all possible roots of the equation
+    // x^2 - kx + m (where x + y = k & xy = m)
+    long long int xMax = k / 2;
 
-    // For all previous values
+    // Find possible (a, b) as root of the equation
+    // x^2 -mx + k^2 (where a + b = m and a * b = k^2)
+    long long int kk = (k * k);
+
+    // For all possible solutions
+    long long int x = ceil((k - sqrt(kk - 8 * k)) / (double) 2);
+    long long int y = (k - x);
+
+    // Find 'x * y' as initial expected 'n'
+    long long int m = (x * y);
+
     do
     {
-      // Find (a, b) as root of the equaton
-      // x^2 -nx + k^2 (where a + b = n and a * b = k^2)
-      long long int &kk = _squares[k];
+      long long int s = sqrt((m * m) - (4 * kk));
 
-      // Start from current value
-      long long int b = kk / a;
+      // Get possible roots
+      long long int a = (m + s) / 2;
+      long long int b = m - a;
+      // std::cout << "k: " << k << " kk: " << kk << " (a*b): " << (a * b) << " a: " << a << " b: " << b << " s: " << s << " m: " << m << " x: " << x << " y: " << y << std::endl;
 
-      // Find 'a + b' as expected 'n'
-      long long int n = (a + b);
-
-      // Find possible (x, y) as root ofthe equaton
-      // p^2 -kp + n (where x + y = k and x * y = n)
-      long long int d = (kk - (4 * n));
-      if (d >= 0)
+      // If valid roots found
+      if ((a * b) == kk)
       {
-        // Find solution
-        long long int x = (k + sqrt(d) + 0.5) / 2;
-        long long int y = k - x;
+        // Store result
+        _results.insert(m);
 
-        // Find 'x * y' as expected 'n'
-        if (n == (x * y))
-        {
-          // Store result
-          _results.insert(n);
-
-          // Display results
-          std::cout << "[ " << k << " ]: "
-                    << n
-                    << " (" << a
-                    << ", " << b
-                    << ", " << x
-                    << ", " << y << ") " << std::endl;
-        }
+        // Print result
+        std::cout << "[ " << k << " ]: "
+                  << m
+                  << " (" << a
+                  << ", " << b
+                  << ", " << x
+                  << ", " << y << ") " << std::endl;
       }
 
-      //Skip all values of k where k^2 is not divisible by 'a'
-      while (k > 0 && _squares[--k] % a)
-        ;
-    } while (k > 0);
+      // Adjust x to advance quickly
+      a = kk / (b - 1);
+      m = a + (b - 1);
+      s = m / y;
+
+      // Update values
+      x = std::max(x + 1, s);
+      y = k - x;
+      m = x * y;
+
+    } while (x <= xMax);
   }
 
+  // Store shorted result  data
+  _count = 1;
   for (auto _x : _results)
   {
     _element.first = _count;

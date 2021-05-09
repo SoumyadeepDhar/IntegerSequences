@@ -36,14 +36,14 @@ unsigned int LargeIntegerSequence::generate()
   long long int _count = 1;
   std::pair<unsigned int, std::string> _element;
 
-  // Check all numbers upto 100000
-  for (long long int k = 8; k <= 1000000; k++)
+  // Check all numbers upto 5000000
+  for (long long int k = 8; k <= 5000000; k++)
   {
     // std::cout << "k: " << k <<  std::endl;
-    long long int xMax = k / 2;
 
     // For all possible roots of the equation
     // x^2 - kx + m (where x + y = k & xy = m)
+    long long int xMax = k / 2;
 
     // Find possible (a, b) as root of the equation
     // x^2 -mx + k^2 (where a + b = m and a * b = k^2)
@@ -87,18 +87,17 @@ unsigned int LargeIntegerSequence::generate()
         // Keep only unique values
         break;
       }
-      else
-      {
-        // Adjust x to advance quickly
-        a = kk / (b - 1);
-        m = a + (b - 1);
-        s = m / y;
+    
+      // Adjust x to advance quickly
+      a = kk / (b - 1);
+      m = a + (b - 1);
+      s = m / y;
 
-        // Update values
-        x = std::max(x + 1, s);
-        y = k - x;
-        m = x * y;
-      }
+      // Update values
+      x = std::max(x + 1, s);
+      y = k - x;
+      m = x * y;
+    
     } while (x <= xMax);
   }
 
