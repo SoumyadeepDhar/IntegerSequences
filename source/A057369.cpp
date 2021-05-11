@@ -87,7 +87,6 @@ unsigned int LargeIntegerSequence::generate()
       if ((x * y) == m)
       {
         // Store result
-        // Store result
         _results[m] = std::make_tuple(a, b, x, y, k);
 
         //Update element count

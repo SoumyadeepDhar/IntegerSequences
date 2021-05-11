@@ -23,6 +23,8 @@
  * 
  */
 
+#include <map>
+#include <tuple>
 #include <iomanip>
 
 #include "largeint.h"
@@ -37,6 +39,14 @@ unsigned int LargeIntegerSequence::generate()
 {
   long long int _count = 1;
   std::pair<unsigned int, std::string> _element;
+
+  // keep result values
+  std::map<long long int, std::tuple
+    < long long int
+    , long long int
+    , long long int
+    , long long int
+    , long long int>> _results;
 
   // Check all numbers upto 5000000
   for (long long int k = 8; k <= 5000000; k++)
@@ -77,29 +87,44 @@ unsigned int LargeIntegerSequence::generate()
       if ((x * y) == m)
       {
         // Store result
-        _element.first = _count;
-        _element.second = std::to_string(k);
-
-        // Write output data
-        _ouWriter << _element;
+        _results[m] = std::make_tuple(a, b, x, y, k);
 
         // Print output results
-        std::cout <<  " " << std::setw(14) << _count;
         std::cout <<  " " << std::setw(14) << k;
         std::cout <<  " " << std::setw(14) << m;
-        std::cout <<  " " << std::setw(14) << kk;
         std::cout <<  " " << std::setw(14) << a;
         std::cout <<  " " << std::setw(14) << b;
         std::cout <<  " " << std::setw(14) << x; 
         std::cout <<  " " << std::setw(14) << y << std::endl;
-
-        //Update element count
-        _count++;
-
-        // Keep only unique values
-        break;
       }
     }
+  }
+
+  // Store shorted result  data
+  _count = 1;
+  for (auto _x : _results)
+  {
+    _element.first = _count;
+    _element.second = std::to_string(std::get<4>(_x.second));
+
+    // Write output data
+    _ouWriter << _element;
+
+    if(_count < 11)
+    {
+      // Print output results
+      std::cout <<  " " << std::setw(4) << _count;
+      std::cout <<  " " << std::setw(4) << std::get<4>(_x.second);
+      std::cout <<  " " << std::setw(4) << _x.first;
+      std::cout <<  " " << std::setw(4) << (std::get<4>(_x.second) * std::get<4>(_x.second));
+      std::cout <<  " " << std::setw(4) << std::get<0>(_x.second);
+      std::cout <<  " " << std::setw(4) << std::get<1>(_x.second);
+      std::cout <<  " " << std::setw(4) << std::get<2>(_x.second);
+      std::cout <<  " " << std::setw(4) << std::get<3>(_x.second) << std::endl;
+    }
+
+    //Update element count
+    _count++;
   }
 
   return 0;
