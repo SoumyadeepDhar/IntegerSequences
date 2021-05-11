@@ -23,6 +23,8 @@
  * 
  */
 
+#include <iomanip>
+
 #include "largeint.h"
 #include "processor.h"
 
@@ -39,34 +41,40 @@ unsigned int LargeIntegerSequence::generate()
   // Check all numbers upto 5000000
   for (long long int k = 8; k <= 5000000; k++)
   {
-    // std::cout << "k: " << k <<  std::endl;
+    // std::cout << std::endl << "k: " << k << " <> ";
 
-    // For all possible roots of the equation
-    // x^2 - kx + m (where x + y = k & xy = m)
-    long long int xMax = k / 2;
-
-    // Find possible (a, b) as root of the equation
-    // x^2 -mx + k^2 (where a + b = m and a * b = k^2)
+    // Get k^2 value
     long long int kk = (k * k);
+    std::vector <unsigned long long int> factors = LargeInteger::factor(kk);
 
-    // For all possible solutions
-    long long int x = ceil((k - sqrt(kk - 8 * k)) / (double) 2);
-    long long int y = (k - x);
-
-    // Find 'x * y' as initial expected 'n'
-    long long int m = (x * y);
-
-    do
+    // Check all possible values of expected 'm'
+    for(auto f = factors.begin() + 1; f != factors.end(); ++f)
     {
-      long long int s = sqrt((m * m) - (4 * kk));
+      // Find possible (a, b) as root of the equation
+      // x^2 -mx + k^2 (where a + b = m and a * b = k^2)
+      long long int a = *f;
+      long long int b = kk / a;
 
-      // Get possible roots
-      long long int a = (m + s) / 2;
-      long long int b = m - a;
+      // Ignore repeated operands
+      if(a > b) break;
+      
+      // Find 'x * y' as initial expected 'm' as a + b
+      long long int m = a + b;
+
+      // Ignore negative discriminant
+      if(kk < (4 * m)) continue;
+
+      // Get discriminant value
+      long long int s = sqrt((k * k) - (4 * m));
+
+      // For all possible roots of the equation
+      // x^2 - kx + m (where x + y = k & xy = m)
+      long long int y = (k + s) / 2;
+      long long int x = k - y;
       // std::cout << "k: " << k << " kk: " << kk << " (a*b): " << (a * b) << " a: " << a << " b: " << b << " s: " << s << " m: " << m << " x: " << x << " y: " << y << std::endl;
 
       // If valid roots found
-      if ((a * b) == kk)
+      if ((x * y) == m)
       {
         // Store result
         _element.first = _count;
@@ -75,30 +83,23 @@ unsigned int LargeIntegerSequence::generate()
         // Write output data
         _ouWriter << _element;
 
+        // Print output results
+        std::cout <<  " " << std::setw(14) << _count;
+        std::cout <<  " " << std::setw(14) << k;
+        std::cout <<  " " << std::setw(14) << m;
+        std::cout <<  " " << std::setw(14) << kk;
+        std::cout <<  " " << std::setw(14) << a;
+        std::cout <<  " " << std::setw(14) << b;
+        std::cout <<  " " << std::setw(14) << x; 
+        std::cout <<  " " << std::setw(14) << y << std::endl;
+
         //Update element count
         _count++;
-        std::cout << "[ " << k << " ]: "
-                  << m
-                  << " (" << a
-                  << ", " << b
-                  << ", " << x
-                  << ", " << y << ") " << std::endl;
 
         // Keep only unique values
         break;
       }
-    
-      // Adjust x to advance quickly
-      a = kk / (b - 1);
-      m = a + (b - 1);
-      s = m / y;
-
-      // Update values
-      x = std::max(x + 1, s);
-      y = k - x;
-      m = x * y;
-    
-    } while (x <= xMax);
+    }
   }
 
   return 0;

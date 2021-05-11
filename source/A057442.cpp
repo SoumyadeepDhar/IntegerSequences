@@ -1,25 +1,24 @@
 /*
- * A057369.cpp
+ * A057442.cpp
  *
- *  Created on:  01-May-2021
- *  Modified on: 26-May-2021
+ *  Created on:  11-May-2021
  * 
  *  Author:  Soumyadeep Dhar
  * 
- *  A057369: numbers m such that the two equations t^2-k*t+m = 0 and
- *           t^2-m*t+k^2 = 0 have positive integer roots. m is the 
- *           constant and k is the coefficient of t in first equation, 
- *           which has roots p and q (i.e., {k, m, p, q} ∈ ℤ+, k=p+q 
- *           and m=p*q). Also k^2 is the constant and m is the coefficient
- *           of t in second equation, which has roots u and v (i.e., 
- *           {k, m, u, v} ∈ ℤ+, m=u+v and k^2=u*v).
+ *  A057442: numbers k^2=u*v in the order of w such that the two equations
+ *           t^2-k*t+m = 0 and t^2-m*t+k^2 = 0 have positive integer roots. 
+ *           m is the constant and k is the coefficient of t in first equation, 
+ *           which has roots p and q (i.e., {k, m, p, q} ∈ ℤ+, k=p+q and m=p*q).
+ *           Also k^2 is the constant and m is the coefficient of t in second 
+ *           equation, which has roots u and v (i.e., {k, m, u, v} ∈ ℤ+, m=u+v 
+ *           and k^2=u*v).
  *
  *  Example: 16, 18, 25, 45, 50, 80, 234, 250, 261, 425, 1025, 1040, 1530, 
  *           1625, 1746, 2320, 4250, 7605, 7794, 9650,  
  * 
- *  A057369: https://oeis.org/A057369/b057369.txt
+ *  A057442: https://oeis.org/A057442/b057442.txt
  * 
- *  Sequence Author:  Naohiro Nomoto, Sep 23 2000
+ *  Sequence Author:  Naohiro Nomoto, Sep 24 2000
  * 
  */
 
@@ -31,7 +30,7 @@
 #include "processor.h"
 
 using LargeInteger = ns::dn::li::LargeInt;
-using LargeIntegerSequence = ns::dn::is::IntegerSequenceProcessor<ns::dn::is::A057369>;
+using LargeIntegerSequence = ns::dn::is::IntegerSequenceProcessor<ns::dn::is::A057442>;
 
 // Process input data to generate next elements of the sequence
 template <>
@@ -87,17 +86,7 @@ unsigned int LargeIntegerSequence::generate()
       if ((x * y) == m)
       {
         // Store result
-        // Store result
-        _results[m] = std::make_tuple(a, b, x, y, k);
-
-        //Update element count
-        _count++;
-        std::cout << "[ " << k << " ]: "
-                  << m
-                  << " (" << a
-                  << ", " << b
-                  << ", " << x
-                  << ", " << y << ") " << std::endl;
+        _results[m] = std::make_tuple(a, b, x, y, kk);
       }
     }
   }
@@ -107,7 +96,7 @@ unsigned int LargeIntegerSequence::generate()
   for (auto _x : _results)
   {
     _element.first = _count;
-    _element.second = std::to_string(_x.first);
+    _element.second = std::to_string(std::get<4>(_x.second));
 
     // Write output data
     _ouWriter << _element;
@@ -130,10 +119,10 @@ unsigned int LargeIntegerSequence::generate()
 int main()
 {
   // Initialize sequence
-  LargeIntegerSequence seqA057369("../data/oeis/b000290.txt", "../data/oeis/b000290.txt", "../data/b057369.txt");
+  LargeIntegerSequence seqA057442("../data/oeis/b000290.txt", "../data/oeis/b000290.txt", "../data/b057442.txt");
 
   // Generate sequence
-  seqA057369.generate();
+  seqA057442.generate();
 
   return 0;
 }

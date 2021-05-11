@@ -19,6 +19,7 @@ enable_testing()
 set(SEQUENCES 
     A002110
     A057369
+    A057442
     A060797 
     A067175
     A127601
