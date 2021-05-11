@@ -56,16 +56,18 @@ unsigned int LargeIntegerSequence::generate()
     long long int kk = (k * k);
     std::vector <unsigned long long int> factors = LargeInteger::factor(kk);
 
+    auto bp = factors.begin();
+    auto ep = factors.end() - 1;
     // Check all possible values of expected 'm'
-    for(auto f = factors.begin() + 1; f != factors.end(); ++f)
+    while(bp < ep)
     {
+      // Move to next factor
+      ++bp; --ep;
+
       // Find possible (a, b) as root of the equation
       // x^2 -mx + k^2 (where a + b = m and a * b = k^2)
-      long long int a = *f;
-      long long int b = kk / a;
-
-      // Ignore repeated operands
-      if(a > b) break;
+      long long int a = *bp;
+      long long int b = *ep;
 
       // Find 'x * y' as initial expected 'm' as a + b
       long long int m = a + b;
@@ -87,9 +89,36 @@ unsigned int LargeIntegerSequence::generate()
       {
         // Store result
         _results[m] = std::make_tuple(a, b, x, y, kk);
+
+        // Print output results
+        std::cout <<  " " << std::setw(14) << k;
+        std::cout <<  " " << std::setw(14) << m;
+        std::cout <<  " " << std::setw(14) << a;
+        std::cout <<  " " << std::setw(14) << b;
+        std::cout <<  " " << std::setw(14) << x; 
+        std::cout <<  " " << std::setw(14) << y << std::endl;
       }
     }
   }
+
+  // Print output results
+  std::cout << std::endl;
+  std::cout <<  " " << std::setw(5) << "  n  ";
+  std::cout <<  " " << std::setw(5) << "  k  ";
+  std::cout <<  " " << std::setw(5) << "  m  ";
+  std::cout <<  " " << std::setw(5) << " k^2 ";
+  std::cout <<  " " << std::setw(5) << "  a  ";
+  std::cout <<  " " << std::setw(5) << "  b  ";
+  std::cout <<  " " << std::setw(5) << "  x  ";
+  std::cout <<  " " << std::setw(5) << "  y  " << std::endl;
+  std::cout <<  " " << std::setw(5) << "-----";
+  std::cout <<  " " << std::setw(5) << "-----";
+  std::cout <<  " " << std::setw(5) << "-----";
+  std::cout <<  " " << std::setw(5) << "-----";
+  std::cout <<  " " << std::setw(5) << "-----";
+  std::cout <<  " " << std::setw(5) << "-----";
+  std::cout <<  " " << std::setw(5) << "-----";
+  std::cout <<  " " << std::setw(5) << "-----" << std::endl;
 
   // Store shorted result  data
   _count = 1;
@@ -101,18 +130,24 @@ unsigned int LargeIntegerSequence::generate()
     // Write output data
     _ouWriter << _element;
 
-    // Print output results
-    std::cout <<  " " << std::setw(14) << _count;
-    std::cout <<  " " << std::setw(14) << _x.first;
-    std::cout <<  " " << std::setw(14) << std::get<0>(_x.second);
-    std::cout <<  " " << std::setw(14) << std::get<1>(_x.second);
-    std::cout <<  " " << std::setw(14) << std::get<2>(_x.second);
-    std::cout <<  " " << std::setw(14) << std::get<3>(_x.second); 
-    std::cout <<  " " << std::setw(14) << std::get<4>(_x.second) << std::endl;
+    // Print only first 10 values
+    if(_count < 11)
+    {
+      // Print output results
+      std::cout <<  " " << std::setw(5) << _count;
+      std::cout <<  " " << std::setw(5) << std::get<4>(_x.second);
+      std::cout <<  " " << std::setw(5) << _x.first;
+      std::cout <<  " " << std::setw(5) << (std::get<4>(_x.second) * std::get<4>(_x.second));
+      std::cout <<  " " << std::setw(5) << std::get<0>(_x.second);
+      std::cout <<  " " << std::setw(5) << std::get<1>(_x.second);
+      std::cout <<  " " << std::setw(5) << std::get<2>(_x.second);
+      std::cout <<  " " << std::setw(5) << std::get<3>(_x.second) << std::endl;
+    }
 
     //Update element count
     _count++;
   }
+
   return 0;
 }
 
