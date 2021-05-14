@@ -15,7 +15,7 @@
  *  A002110: https://oeis.org/A002110/a002110.txt
  *  A060797: https://oeis.org/A060797/b060797.txt
  * 
- *  Sequence Author: Labos Elemer, Apr 27 2001
+ *  Sequence Author: Labos Elemer, Apr 27, 2001
  * 
  */
 

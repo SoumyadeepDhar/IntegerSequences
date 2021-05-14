@@ -16,7 +16,7 @@ find_library(LARGEINT NAMES largeint HINTS "${CMAKE_SOURCE_DIR}/library/")
 enable_testing()
 
 # List of sequences
-set(SEQUENCES 
+set(SEQUENCES
     A002110
     A057369
     A057442
@@ -24,7 +24,8 @@ set(SEQUENCES
     A067175
     A127601
     A143293
-    A343860)
+    A343860
+    A344279)
 
 # Create target for each sequence
 foreach(seq ${SEQUENCES})

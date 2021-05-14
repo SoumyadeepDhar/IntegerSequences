@@ -16,7 +16,7 @@
  *  A002110: https://oeis.org/A002110/a002110_1.txt
  *  A067175: https://oeis.org/A067175/b067175.txt
  * 
- *  Sequence Author: Lekraj Beedassy, Feb 18 2002
+ *  Sequence Author: Lekraj Beedassy, Feb 18, 2002
  * 
  */
 

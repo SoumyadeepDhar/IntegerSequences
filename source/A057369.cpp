@@ -19,7 +19,7 @@
  * 
  *  A057369: https://oeis.org/A057369/b057369.txt
  * 
- *  Sequence Author:  Naohiro Nomoto, Sep 23 2000
+ *  Sequence Author:  Naohiro Nomoto, Sep 23, 2000
  * 
  */
 
@@ -102,25 +102,6 @@ unsigned int LargeIntegerSequence::generate()
     }
   }
 
-  // Print output results
-  std::cout << std::endl;
-  std::cout <<  " " << std::setw(5) << "  n  ";
-  std::cout <<  " " << std::setw(5) << "  k  ";
-  std::cout <<  " " << std::setw(5) << "  m  ";
-  std::cout <<  " " << std::setw(5) << " k^2 ";
-  std::cout <<  " " << std::setw(5) << "  a  ";
-  std::cout <<  " " << std::setw(5) << "  b  ";
-  std::cout <<  " " << std::setw(5) << "  x  ";
-  std::cout <<  " " << std::setw(5) << "  y  " << std::endl;
-  std::cout <<  " " << std::setw(5) << "-----";
-  std::cout <<  " " << std::setw(5) << "-----";
-  std::cout <<  " " << std::setw(5) << "-----";
-  std::cout <<  " " << std::setw(5) << "-----";
-  std::cout <<  " " << std::setw(5) << "-----";
-  std::cout <<  " " << std::setw(5) << "-----";
-  std::cout <<  " " << std::setw(5) << "-----";
-  std::cout <<  " " << std::setw(5) << "-----" << std::endl;
-
   // Store shorted result  data
   _count = 1;
   for (auto _x : _results)
@@ -130,20 +111,6 @@ unsigned int LargeIntegerSequence::generate()
 
     // Write output data
     _ouWriter << _element;
-
-    // Print only first 10 values
-    if(_count < 11)
-    {
-      // Print output results
-      std::cout <<  " " << std::setw(5) << _count;
-      std::cout <<  " " << std::setw(5) << std::get<4>(_x.second);
-      std::cout <<  " " << std::setw(5) << _x.first;
-      std::cout <<  " " << std::setw(5) << (std::get<4>(_x.second) * std::get<4>(_x.second));
-      std::cout <<  " " << std::setw(5) << std::get<0>(_x.second);
-      std::cout <<  " " << std::setw(5) << std::get<1>(_x.second);
-      std::cout <<  " " << std::setw(5) << std::get<2>(_x.second);
-      std::cout <<  " " << std::setw(5) << std::get<3>(_x.second) << std::endl;
-    }
 
     //Update element count
     _count++;

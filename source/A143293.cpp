@@ -15,7 +15,7 @@
  *  A002110: https://oeis.org/A002110/b002110.txt
  *  A143293: https://oeis.org/A143293/b143293.txt
  * 
- *  Sequence Author: Gary W. Adamson, Aug 05 2008
+ *  Sequence Author: Gary W. Adamson, Aug 05, 2008
  * 
  */
 
