@@ -15,8 +15,8 @@ find_library(LARGEINT NAMES largeint HINTS "${CMAKE_SOURCE_DIR}/library/")
 # Enable CTest
 enable_testing()
 
-# List of sequences
-set(SEQUENCES
+# List of manual sequences
+set(MANUAL_SEQUENCES
     A002110
     A057369
     A057442
@@ -28,11 +28,11 @@ set(SEQUENCES
     A344279)
 
 # Create target for each sequence
-foreach(seq ${SEQUENCES})
+foreach(seq ${MANUAL_SEQUENCES})
 
     # Add source files
     set(SOURCES 
-        source/${seq}.cpp
+        source/manual/${seq}.cpp
         source/processor.cpp)
 
     # Make ctest target 
@@ -51,4 +51,35 @@ foreach(seq ${SEQUENCES})
     add_test(CTest${seq} ${seq})
 
 endforeach()
+
+
+# List of generated sequences
+set(GENERATED_SEQUENCES )
+
+# Create target for each sequence
+foreach(seq ${GENERATED_SEQUENCES})
+
+    # Add source files
+    set(SOURCES 
+        source/manual/${seq}.cpp
+        source/processor.cpp)
+
+    # Make ctest target 
+    add_executable(${seq} ${SOURCES})
+
+    # Create sequence number based class
+    target_compile_definitions(${seq} PRIVATE "-DSEQUENCE=${seq}" "-DPARI")
+
+    # Set build options
+    target_compile_options(${seq} PRIVATE -O3 -Wall -Wextra)
+
+    # Links the executable to the LargeInt C++ library.
+    target_link_libraries (${seq} PRIVATE ${LARGEINT}) 
+
+    # Add CTest to CI
+    add_test(CTest${seq} ${seq})
+
+endforeach()
+
+
 
