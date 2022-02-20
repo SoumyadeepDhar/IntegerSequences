@@ -55,7 +55,7 @@ unsigned int LargeIntegerSequence::generate()
 
     // Get k^2 value
     long long int kk = (k * k);
-    std::vector <unsigned long long int> factors = LargeInteger::factor(kk);
+    std::vector <unsigned long long int> factors = LargeInteger::Factor(kk);
 
     auto bp = factors.begin();
     auto ep = factors.end() - 1;
