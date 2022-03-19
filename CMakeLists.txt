@@ -16,16 +16,7 @@ find_library(LARGEINT NAMES largeint HINTS "${CMAKE_SOURCE_DIR}/library/")
 enable_testing()
 
 # List of manual sequences
-set(MANUAL_SEQUENCES
-    A002110
-    A057369
-    A057442
-    A060797 
-    A067175
-    A127601
-    A143293
-    A343860
-    A344279)
+file(STRINGS msequence.txt MANUAL_SEQUENCES)
 
 # Create target for each sequence
 foreach(seq ${MANUAL_SEQUENCES})
@@ -54,14 +45,14 @@ endforeach()
 
 
 # List of generated sequences
-set(GENERATED_SEQUENCES )
+file(STRINGS gsequence.txt GENERATED_SEQUENCES)
 
 # Create target for each sequence
 foreach(seq ${GENERATED_SEQUENCES})
 
     # Add source files
     set(SOURCES 
-        source/manual/${seq}.cpp
+        source/generated/${seq}.cpp
         source/processor.cpp)
 
     # Make ctest target 
@@ -80,6 +71,3 @@ foreach(seq ${GENERATED_SEQUENCES})
     add_test(CTest${seq} ${seq})
 
 endforeach()
-
-
-
